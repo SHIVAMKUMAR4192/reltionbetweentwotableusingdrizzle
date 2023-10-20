@@ -15,14 +15,14 @@ export const user = pgTable('user', {
  export const userRelations= relations(user, ({ one }) =>({
   profile: one(profiles, {
     fields: [user.id],
-    references: [profiles.userId],
+    references: [profiles.userid],
   }),
 })) 
 export const profiles = pgTable("profiles", {
-  id: serial ('id').primaryKey(),
-  bio: varchar('bio', { length: 256}),
-  userId:integer('userId').notNull().references(() => user.id),
-})
+  id: serial('id').primaryKey(),
+  bio: varchar('bio', { length: 256 }),
+  userid: integer('userid').notNull().references(() => user.id),
+});
 
 export type SelectUser = InferModel<typeof user>;
 export type InsertUser = InferModel<typeof user, 'insert'>;

@@ -72,14 +72,14 @@ console.log("deletedUser", deletedUser)
 })
 
 
-router.get('/profiles/:userId', async(req, res) =>{
+router.get('/profiles/:userid', async(req, res) =>{
 try{
-    const { userId } = req.params;
+    const { userid } = req.params;
 
     const userProfiles = await dbConnection
     .select()
     .from(profiles)
-    .where(eq(profiles.userId, Number(userId)));
+    .where(eq(profiles.userid, Number(userid)));
     console.log('userProfile', userProfiles)
     if (userProfiles && userProfiles.length > 0) {
         res.status(200).json(userProfiles);
